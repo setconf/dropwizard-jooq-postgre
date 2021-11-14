@@ -1,0 +1,42 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:14
+    restart: always
+    container_name: postgres
+    volumes:
+      - "database-data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: dvdrental
+    ports:
+      - "5432:5432"
+    networks:
+      - dropwizard_network
+
+  dropwizard:
+#    image: openjdk:11-jre
+    build:
+      dockerfile: ./docker/Dockerfile
+    container_name: dropwizard
+    volumes:
+    - ./target/dropwizard-jooq-postgre-1.0.0.jar:/microservice/dropwizard-jooq-postgre-1.0.0.jar
+    - ./config.yml:/microservice/config.yml
+    - ./wait-for.sh:/microservice/wait-for.sh
+    working_dir: /microservice
+    command: sh -c "chmod +x ./wait-for.sh & ./wait-for.sh db:5432 -- java -jar dropwizard-jooq-postgre-1.0.0.jar server config.yml"
+    ports:
+    - "8080:8080"
+    - "8081:8081"
+    networks:
+    - dropwizard_network
+    depends_on:
+      - db
+
+volumes:
+  database-data:
+
+networks:
+  dropwizard_network:
+    external: true

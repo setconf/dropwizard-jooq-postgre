@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+		 http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.3.xsd">
+
+    <changeSet id="0001" author="developer">
+        <comment>Create schema</comment>
+        <sqlFile dbms="postgresql"
+                 endDelimiter="\t"
+                 path="db/data/schema.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+
+    <changeSet id="0002" author="developer">
+        <comment>Data for Name: actor; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/actor.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="actor">
+            <column name="actor_id" type="NUMERIC"/>
+            <column name="first_name" type="STRING"/>
+            <column name="last_name" type="STRING"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0003" author="developer">
+        <comment>Data for Name: customer; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/customer.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="customer">
+            <column name="customer_id" type="NUMERIC"/>
+            <column name="store_id" type="NUMERIC"/>
+            <column name="first_name" type="STRING"/>
+            <column name="last_name" type="STRING"/>
+            <column name="email" type="STRING"/>
+            <column name="address_id" type="NUMERIC"/>
+            <column name="activebool" type="BOOLEAN"/>
+            <column name="create_date" type="DATE"/>
+            <column name="last_update" type="TIMESTAMP"/>
+            <column name="active" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0004" author="developer">
+        <comment>Data for Name: category; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/category.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="category">
+            <column name="category_id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0005" author="developer">
+        <comment>Data for Name: category; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/film.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="film">
+            <column name="film_id" type="NUMERIC"/>
+            <column name="title" type="STRING"/>
+            <column name="description" type="STRING"/>
+            <column name="release_year" type="NUMERIC"/>
+            <column name="language_id" type="NUMERIC"/>
+            <column name="rental_duration" type="NUMERIC"/>
+            <column name="rental_rate" type="NUMERIC"/>
+            <column name="length" type="NUMERIC"/>
+            <column name="replacement_cost" type="NUMERIC"/>
+            <column name="rating" type="STRING"/>
+            <column name="last_update" type="TIMESTAMP"/>
+            <column name="special_features" type="STRING"/>
+            <column name="fulltext" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0006" author="developer">
+        <comment>Data for Name: film_actor; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/film_actor.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="film_actor">
+            <column name="actor_id" type="NUMERIC"/>
+            <column name="film_id" type="NUMERIC"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0007" author="developer">
+        <comment>Data for Name: film_category; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/film_category.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="film_category">
+            <column name="film_id" type="NUMERIC"/>
+            <column name="category_id" type="NUMERIC"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0008" author="developer">
+        <comment>Data for Name: address; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/address.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="address">
+            <column name="address_id" type="NUMERIC"/>
+            <column name="address" type="STRING"/>
+            <column name="address2" type="STRING"/>
+            <column name="district" type="STRING"/>
+            <column name="city_id" type="NUMERIC"/>
+            <column name="postal_code" type="STRING"/>
+            <column name="phone" type="STRING"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0009" author="developer">
+        <comment>Data for Name: city; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/city.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="city">
+            <column name="city_id" type="NUMERIC"/>
+            <column name="city" type="STRING"/>
+            <column name="country_id" type="NUMERIC"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0010" author="developer">
+        <comment>Data for Name: country; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/country.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="country">
+            <column name="country_id" type="NUMERIC"/>
+            <column name="country" type="STRING"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0011" author="developer">
+        <comment>Data for Name: inventory; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/inventory.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="inventory">
+            <column name="inventory_id" type="NUMERIC"/>
+            <column name="film_id" type="NUMERIC"/>
+            <column name="store_id" type="NUMERIC"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0012" author="developer">
+        <comment>Data for Name: language; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/language.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="language">
+            <column name="language_id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0013" author="developer">
+        <comment>Data for Name: payment; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/payment.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="payment">
+            <column name="payment_id" type="NUMERIC"/>
+            <column name="customer_id" type="NUMERIC"/>
+            <column name="staff_id" type="NUMERIC"/>
+            <column name="rental_id" type="NUMERIC"/>
+            <column name="amount" type="STRING"/>
+            <column name="payment_date" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0014" author="developer">
+        <comment>Data for Name: rental; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/rental.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="rental">
+            <column name="rental_id" type="NUMERIC"/>
+            <column name="rental_date" type="TIMESTAMP"/>
+            <column name="inventory_id" type="NUMERIC"/>
+            <column name="customer_id" type="NUMERIC"/>
+            <column name="return_date" type="TIMESTAMP"/>
+            <column name="staff_id" type="NUMERIC"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0015" author="developer">
+        <comment>Data for Name: staff; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/staff.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="staff">
+            <column name="staff_id" type="NUMERIC"/>
+            <column name="first_name" type="STRING"/>
+            <column name="last_name" type="STRING"/>
+            <column name="address_id" type="NUMERIC"/>
+            <column name="email" type="STRING"/>
+            <column name="store_id" type="NUMERIC"/>
+            <column name="active" type="BOOLEAN"/>
+            <column name="username" type="STRING"/>
+            <column name="password" type="STRING"/>
+            <column name="last_update" type="TIMESTAMP"/>
+            <column name="picture" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0016" author="developer">
+        <comment>Data for Name: store; Type: TABLE DATA;</comment>
+        <loadData catalogName="pg_catalog"
+                  file="changelog/db/data/store.csv"
+                  schemaName="public"
+                  separator="\t"
+                  tableName="store">
+            <column name="store_id" type="NUMERIC"/>
+            <column name="manager_staff_id" type="NUMERIC"/>
+            <column name="address_id" type="NUMERIC"/>
+            <column name="last_update" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="0017" author="developer">
+        <comment>Finalize schema (set sequence value, add constraint, create index)</comment>
+        <sqlFile dbms="postgresql"
+                 endDelimiter="\t"
+                 path="db/data/finalize_schema.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+
+</databaseChangeLog>
